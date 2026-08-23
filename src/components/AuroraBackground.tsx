@@ -7,7 +7,7 @@ export const AuroraBackground: React.FC = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+    const gl = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
     if (!gl) return;
 
     let animationFrameId: number;
@@ -30,36 +30,36 @@ export const AuroraBackground: React.FC = () => {
 
       void main() {
           vec2 uv = v_texCoord;
-          vec3 color = vec3(0.023, 0.023, 0.059); // #06060F deep-space base
+          vec3 color = vec3(0.027, 0.043, 0.078); // #070B14 dark navy base
 
-          float t = u_time * 0.15;
+          float t = u_time * 0.12;
           vec2 mouse = u_mouse / u_resolution;
 
-          vec3 blue = vec3(0.0, 0.824, 1.0);    // #00D2FF
-          vec3 purple = vec3(0.741, 0.0, 1.0);  // #BD00FF
-          vec3 cyan = vec3(0.0, 1.0, 0.941);    // #00FFF0
+          vec3 cyan = vec3(0.133, 0.827, 0.933);    // #22D3EE
+          vec3 violet = vec3(0.655, 0.545, 0.980);  // #A78BFA
+          vec3 sky = vec3(0.220, 0.741, 0.973);     // #38BDF8
 
-          // Blob 1: Blue
+          // Blob 1: Cyan
           vec2 p1 = vec2(0.3 + 0.2 * sin(t * 1.1), 0.4 + 0.15 * cos(t * 0.8));
           float d1 = length(uv - p1);
           float b1 = smoothstep(0.8, 0.0, d1);
-          color = mix(color, blue, b1 * 0.25);
+          color = mix(color, cyan, b1 * 0.22);
 
-          // Blob 2: Purple
+          // Blob 2: Violet
           vec2 p2 = vec2(0.7 + 0.15 * cos(t * 0.9), 0.6 + 0.2 * sin(t * 1.2));
           float d2 = length(uv - p2);
           float b2 = smoothstep(0.75, 0.0, d2);
-          color = mix(color, purple, b2 * 0.3);
+          color = mix(color, violet, b2 * 0.25);
 
-          // Blob 3: Cyan
+          // Blob 3: Sky
           vec2 p3 = vec2(0.5 + 0.25 * sin(t * 0.7), 0.5 + 0.25 * cos(t * 1.3));
           float d3 = length(uv - p3);
           float b3 = smoothstep(0.7, 0.0, d3);
-          color = mix(color, cyan, b3 * 0.2);
+          color = mix(color, sky, b3 * 0.18);
 
           // Interactive mouse glow
           float mouseGlow = smoothstep(0.45, 0.0, length(uv - mouse));
-          color += blue * mouseGlow * 0.18;
+          color += cyan * mouseGlow * 0.14;
 
           gl_FragColor = vec4(color, 1.0);
       }

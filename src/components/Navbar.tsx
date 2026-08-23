@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Menu, X, FileText } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 
 interface NavbarProps {
   activeSection: string;
@@ -28,29 +28,34 @@ export const Navbar: React.FC<NavbarProps> = ({
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 glass-nav">
-      <div className="flex justify-between items-center max-w-[1200px] mx-auto px-6 py-4">
-        {/* Brand */}
+    <nav className="fixed top-0 w-full z-50 glass-nav border-b border-white/[0.08]">
+      <div className="flex justify-between items-center max-w-[1280px] mx-auto px-6 py-4">
+        {/* Brand with AR Circle Avatar */}
         <button
           onClick={() => handleNav('work')}
-          className="font-headline-md text-2xl font-bold text-[#e4e1ef] tracking-tighter hover:text-[#00d2ff] transition-colors text-left flex items-center gap-2"
+          className="flex items-center gap-3 cursor-pointer group"
+          aria-label="Anush Rai - Go to Top"
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-[#00d2ff] shadow-[0_0_10px_#00d2ff]" />
-          Anush Rai
+          <div className="w-9 h-9 rounded-full bg-gradient-to-tr from-[#38BDF8] via-[#22D3EE] to-[#818CF8] flex items-center justify-center text-[#070B14] font-mono font-extrabold text-sm shadow-[0_0_12px_rgba(34,211,238,0.4)]">
+            AR
+          </div>
+          <span className="font-display text-lg font-bold text-white tracking-tight group-hover:text-[#22D3EE] transition-colors">
+            Anush Rai
+          </span>
         </button>
 
-        {/* Desktop Nav Items */}
-        <div className="hidden md:flex gap-2 items-center font-headline-md bg-white/5 p-1.5 rounded-full border border-white/10 backdrop-blur-md">
+        {/* Desktop Nav Pills */}
+        <div className="hidden md:flex gap-1 items-center bg-[#0C1222]/80 px-2 py-1.5 rounded-full border border-white/[0.08] backdrop-blur-xl">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleNav(item.id)}
-                className={`px-5 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-300 ${
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? 'bg-[#00d2ff]/20 text-[#a5e7ff] border border-[#00d2ff]/40 shadow-[0_0_12px_rgba(0,210,255,0.3)]'
-                    : 'text-[#bbc9cf] hover:text-white hover:bg-white/5'
+                    ? 'bg-[#22D3EE] text-[#070B14] font-bold shadow-[0_0_12px_rgba(34,211,238,0.4)]'
+                    : 'text-[#94A3B8] hover:text-white hover:bg-white/[0.04]'
                 }`}
               >
                 {item.label}
@@ -59,50 +64,52 @@ export const Navbar: React.FC<NavbarProps> = ({
           })}
         </div>
 
-        {/* Action Buttons */}
+        {/* Action Button: RESUME ↗ */}
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={onOpenResume}
-            className="px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest text-[#a5e7ff] border border-[#00d2ff]/40 bg-gradient-to-r from-[#00d2ff]/15 to-[#e9aaff]/15 hover:bg-[#00d2ff]/25 hover:border-[#00d2ff] transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(0,210,255,0.15)] hover:shadow-[0_0_25px_rgba(0,210,255,0.35)]"
+            className="px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider text-white border border-white/20 bg-white/[0.04] hover:bg-white/[0.1] hover:border-[#22D3EE]/50 hover:text-[#22D3EE] transition-all flex items-center gap-1 cursor-pointer"
           >
-            <FileText className="w-3.5 h-3.5" />
-            Resume
+            RESUME
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
         {/* Mobile Toggle */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-[#e4e1ef] p-2 rounded-lg bg-surface-variant/50 border border-white/10"
+          className="md:hidden text-[#E2E8F0] p-2 rounded-xl bg-white/[0.05] border border-white/[0.1] hover:bg-white/[0.1] transition-colors"
+          aria-label="Toggle navigation menu"
         >
-          {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
       </div>
 
       {/* Mobile Drawer */}
       {mobileOpen && (
-        <div className="md:hidden bg-[#0d0d17]/95 border-b border-white/10 px-6 py-6 flex flex-col gap-4 animate-in slide-in-from-top duration-200">
+        <div className="md:hidden bg-[#0A0F1A]/95 border-b border-white/10 px-6 py-6 flex flex-col gap-3 backdrop-blur-xl animate-in slide-in-from-top-2 duration-200">
           {navItems.map((item) => (
             <button
               key={item.id}
               onClick={() => handleNav(item.id)}
-              className={`text-left text-lg font-medium py-2 border-b border-white/5 ${
-                activeSection === item.id ? 'text-primary font-bold' : 'text-[#bbc9cf]'
+              className={`text-left text-sm font-semibold py-2.5 px-3 rounded-lg border-b border-white/[0.04] transition-colors ${
+                activeSection === item.id
+                  ? 'text-[#070B14] bg-[#22D3EE] font-bold'
+                  : 'text-[#94A3B8] hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <div className="flex flex-col gap-3 pt-2">
+          <div className="pt-3">
             <button
               onClick={() => {
                 onOpenResume();
                 setMobileOpen(false);
               }}
-              className="w-full py-3 rounded-xl text-center text-sm font-bold text-primary border border-primary/40 bg-primary/10 flex items-center justify-center gap-2"
+              className="w-full py-3 rounded-full text-center text-xs font-bold uppercase tracking-wider text-[#070B14] bg-[#22D3EE] flex items-center justify-center gap-2 hover:bg-[#38BDF8] transition-colors"
             >
-              <Download className="w-4 h-4" />
-              Download Resume
+              RESUME ↗
             </button>
           </div>
         </div>
@@ -110,3 +117,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </nav>
   );
 };
+

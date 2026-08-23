@@ -43,7 +43,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
       } else {
         setErrorMsg(data.error || 'Failed to send message. Please try again.');
       }
-    } catch (err) {
+    } catch {
       setErrorMsg('Network error. Please check connection and try again.');
     } finally {
       setLoading(false);
@@ -59,27 +59,31 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-      <div className="glass-modal rounded-2xl max-w-lg w-full p-6 relative">
-        <div className="flex justify-between items-center pb-4 border-b border-white/10 mb-6">
-          <div className="flex items-center gap-2">
-            <Mail className="w-5 h-5 text-primary" />
-            <h2 className="text-xl font-bold text-white">Contact Anush Rai</h2>
+      <div className="glass-modal rounded-2xl max-w-lg w-full p-6 sm:p-8 relative border border-white/[0.08] shadow-2xl">
+        <div className="flex justify-between items-center pb-4 border-b border-white/[0.08] mb-6">
+          <div className="flex items-center gap-2.5">
+            <Mail className="w-5 h-5 text-[#22D3EE]" />
+            <h2 className="font-display text-xl font-bold text-white">Contact Anush Rai</h2>
           </div>
-          <button onClick={onClose} className="text-gray-400 hover:text-white">
+          <button
+            onClick={onClose}
+            className="p-1 rounded-lg text-[#94A3B8] hover:text-white hover:bg-white/[0.06] transition-colors cursor-pointer"
+            aria-label="Close"
+          >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {submitted ? (
           <div className="text-center py-8 space-y-4">
-            <CheckCircle2 className="w-16 h-16 text-[#00fdee] mx-auto animate-bounce" />
-            <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
-            <p className="text-sm text-[#bbc9cf] max-w-sm mx-auto">
-              Thank you for reaching out. Anush Rai has received your message and will reply to <strong>{formData.email}</strong> shortly.
+            <CheckCircle2 className="w-14 h-14 text-[#22D3EE] mx-auto animate-bounce" />
+            <h3 className="font-display text-2xl font-bold text-white">Message Sent!</h3>
+            <p className="font-sans text-sm text-[#CBD5E1] max-w-sm mx-auto leading-relaxed">
+              Thank you for reaching out. Anush Rai has received your message and will reply to <strong className="text-white font-mono">{formData.email}</strong> shortly.
             </p>
             <button
               onClick={handleReset}
-              className="mt-6 px-6 py-2.5 rounded-xl bg-primary text-[#003543] font-bold text-xs uppercase tracking-wider hover:bg-[#00d2ff]"
+              className="mt-6 px-6 py-2.5 rounded-xl bg-[#22D3EE] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:bg-[#38BDF8] transition-all cursor-pointer shadow-[0_0_15px_rgba(34,211,238,0.4)]"
             >
               Done
             </button>
@@ -87,14 +91,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             {errorMsg && (
-              <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
+              <div className="p-3 rounded-xl bg-red-500/10 border border-red-500/30 text-red-400 text-xs flex items-center gap-2">
                 <AlertCircle className="w-4 h-4 flex-shrink-0" />
                 {errorMsg}
               </div>
             )}
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#bbc9cf] mb-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5 font-sans">
                 Your Name
               </label>
               <input
@@ -102,12 +106,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 placeholder="e.g. Sarah Jenkins"
-                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-gray-500 text-sm"
+                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-slate-500 text-sm font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#bbc9cf] mb-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5 font-sans">
                 Email Address *
               </label>
               <input
@@ -116,12 +120,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 placeholder="sarah@enterprise.com"
-                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-gray-500 text-sm"
+                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-slate-500 text-sm font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#bbc9cf] mb-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5 font-sans">
                 Subject
               </label>
               <input
@@ -129,12 +133,12 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 placeholder="Project Leadership Opportunity / Data Pipeline Query"
-                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-gray-500 text-sm"
+                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-slate-500 text-sm font-sans"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-bold uppercase tracking-wider text-[#bbc9cf] mb-1">
+              <label className="block text-xs font-semibold uppercase tracking-wider text-[#94A3B8] mb-1.5 font-sans">
                 Message *
               </label>
               <textarea
@@ -143,14 +147,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 placeholder="Hi Anush, we would love to discuss an automation engineering role..."
-                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-gray-500 text-sm resize-none"
+                className="w-full px-4 py-2.5 rounded-xl glass-input text-white placeholder-slate-500 text-sm resize-none font-sans"
               />
             </div>
 
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-primary to-[#00fdee] text-[#003543] font-bold text-xs uppercase tracking-wider hover:shadow-[0_0_20px_rgba(0,210,255,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer"
+              className="w-full py-3 rounded-xl bg-[#22D3EE] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:bg-[#38BDF8] hover:shadow-[0_0_20px_rgba(34,211,238,0.4)] transition-all flex items-center justify-center gap-2 cursor-pointer mt-2"
             >
               {loading ? (
                 <>

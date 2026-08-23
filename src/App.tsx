@@ -13,6 +13,7 @@ import { SopAnalyzerModal } from './components/SopAnalyzerModal';
 import { TicketEngineModal } from './components/TicketEngineModal';
 import { DeploymentGuideModal } from './components/DeploymentGuideModal';
 import { Footer } from './components/Footer';
+import { ScrollToTop } from './components/ScrollToTop';
 
 export function App() {
   const [activeSection, setActiveSection] = useState<string>('work');
@@ -61,7 +62,7 @@ export function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#06060F] text-[#e4e1ef] font-sans selection:bg-primary selection:text-[#003543] relative overflow-x-hidden">
+    <div className="min-h-screen bg-[#070B14] text-[#E2E8F0] font-sans selection:bg-[#22D3EE]/30 selection:text-[#38BDF8] relative overflow-x-hidden">
       {/* Background Aurora Shader Canvas */}
       <AuroraBackground />
 
@@ -103,6 +104,8 @@ export function App() {
         onOpenContact={() => setIsContactOpen(true)}
       />
 
+      <ScrollToTop />
+
       {/* Modals */}
       <ResumeModal isOpen={isResumeOpen} onClose={() => setIsResumeOpen(false)} />
 
@@ -120,12 +123,12 @@ export function App() {
       {/* Architecture Detail Modal */}
       {genericModal.isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-          <div className="bg-[#13121c] border border-white/20 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-            <h3 className="text-xl font-bold text-white mb-2">{genericModal.title}</h3>
-            <p className="text-sm text-[#bbc9cf] leading-relaxed mb-6">{genericModal.detail}</p>
+          <div className="glass-modal rounded-2xl max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-white/[0.08]">
+            <h3 className="font-display text-xl font-bold text-white mb-2">{genericModal.title}</h3>
+            <p className="font-sans text-sm text-[#CBD5E1] leading-relaxed mb-6">{genericModal.detail}</p>
             <button
               onClick={() => setGenericModal({ isOpen: false, title: '', detail: '' })}
-              className="w-full py-2.5 rounded-xl bg-primary text-[#003543] font-bold text-xs uppercase tracking-wider hover:bg-[#00d2ff]"
+              className="w-full py-2.5 rounded-xl bg-[#22D3EE] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:bg-[#38BDF8] transition-all cursor-pointer shadow-[0_0_15px_rgba(34,211,238,0.3)]"
             >
               Close Architecture View
             </button>

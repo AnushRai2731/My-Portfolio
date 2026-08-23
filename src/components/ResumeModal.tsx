@@ -1,5 +1,5 @@
 import React from 'react';
-import { Download, X, Printer, CheckCircle2, Award, Briefcase, GraduationCap } from 'lucide-react';
+import { Download, X, Printer, Award, Briefcase, GraduationCap } from 'lucide-react';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface ResumeModalProps {
@@ -53,34 +53,36 @@ EDUCATION & CERTIFICATIONS:
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in">
-      <div className="glass-modal rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col relative overflow-hidden">
+      <div className="glass-modal rounded-2xl max-w-3xl w-full max-h-[90vh] flex flex-col relative overflow-hidden border border-white/[0.08] shadow-2xl">
         {/* Modal Header */}
-        <div className="p-6 border-b border-white/10 flex justify-between items-center bg-[#1b1b25]">
+        <div className="p-6 border-b border-white/[0.08] flex justify-between items-center bg-[#0D1321]">
           <div>
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <Briefcase className="w-5 h-5 text-primary" />
+            <h2 className="font-display text-xl font-bold text-white flex items-center gap-2">
+              <Briefcase className="w-5 h-5 text-[#22D3EE]" />
               Anush Rai — Curriculum Vitae
             </h2>
-            <p className="text-xs text-[#bbc9cf] mt-0.5">Software Engineer | Project Lead</p>
+            <p className="font-sans text-xs text-[#94A3B8] mt-0.5">Software Engineer | Project Lead</p>
           </div>
           <div className="flex items-center gap-2">
             <button
               onClick={() => window.print()}
-              className="p-2 rounded-lg bg-white/5 border border-white/10 text-gray-300 hover:text-white hover:bg-white/10 transition-colors"
+              className="p-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-[#CBD5E1] hover:text-white hover:bg-white/[0.08] transition-colors cursor-pointer"
               title="Print Resume"
+              aria-label="Print Resume"
             >
               <Printer className="w-4 h-4" />
             </button>
             <button
               onClick={handleDownload}
-              className="px-4 py-2 rounded-lg bg-primary text-[#003543] font-bold text-xs uppercase tracking-wider hover:bg-[#00d2ff] transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(0,210,255,0.4)]"
+              className="px-4 py-2 rounded-xl bg-[#22D3EE] text-[#070B14] font-bold text-xs uppercase tracking-wider hover:bg-[#38BDF8] transition-all flex items-center gap-1.5 shadow-[0_0_15px_rgba(34,211,238,0.4)] cursor-pointer"
             >
               <Download className="w-4 h-4" />
               Download
             </button>
             <button
               onClick={onClose}
-              className="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 transition-colors ml-2"
+              className="p-2 rounded-xl text-[#94A3B8] hover:text-white hover:bg-white/[0.08] transition-colors ml-2 cursor-pointer"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
@@ -88,50 +90,50 @@ EDUCATION & CERTIFICATIONS:
         </div>
 
         {/* Modal Body */}
-        <div className="p-6 overflow-y-auto space-y-6 text-sm text-[#bbc9cf]">
+        <div className="p-6 overflow-y-auto space-y-6 text-sm text-[#CBD5E1]">
           {/* Header Summary */}
-          <div className="p-4 rounded-xl bg-white/5 border border-white/10 flex justify-between flex-wrap gap-4">
+          <div className="p-4 rounded-xl bg-white/[0.03] border border-white/[0.08] flex justify-between flex-wrap gap-4">
             <div>
-              <p className="text-white font-bold text-base">Anush Rai</p>
-              <p className="text-xs text-primary">{PERSONAL_INFO.title}</p>
-              <p className="text-xs text-gray-400 mt-1">{PERSONAL_INFO.location} | {PERSONAL_INFO.email}</p>
+              <p className="font-display text-white font-bold text-base">Anush Rai</p>
+              <p className="font-sans text-xs text-[#22D3EE] font-medium">{PERSONAL_INFO.title}</p>
+              <p className="font-mono text-xs text-[#94A3B8] mt-1">{PERSONAL_INFO.location} | {PERSONAL_INFO.email}</p>
             </div>
-            <div className="text-right text-xs space-y-1">
-              <p><strong className="text-white">Experience:</strong> 4+ Years</p>
-              <p><strong className="text-white">Certification:</strong> Azure AZ-900</p>
-              <p><strong className="text-white">Specialty:</strong> Automation & Data Pipelines</p>
+            <div className="text-right text-xs font-mono space-y-1 text-[#CBD5E1]">
+              <p><strong className="text-white font-sans">Experience:</strong> 4+ Years</p>
+              <p><strong className="text-white font-sans">Certification:</strong> Azure AZ-900</p>
+              <p><strong className="text-white font-sans">Specialty:</strong> Automation & Data Pipelines</p>
             </div>
           </div>
 
           {/* Work Experience */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-[#22D3EE] mb-3 flex items-center gap-2">
               <Briefcase className="w-4 h-4" /> Work Experience
             </h3>
             <div className="space-y-4">
-              <div className="p-4 rounded-xl bg-surface-variant/30 border border-white/5">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                 <div className="flex justify-between items-start">
-                  <h4 className="font-bold text-white">Project Lead</h4>
-                  <span className="text-xs text-primary font-semibold">May 2026 — Present</span>
+                  <h4 className="font-display font-bold text-white">Project Lead</h4>
+                  <span className="font-mono text-xs text-[#22D3EE] font-semibold">May 2026 — Present</span>
                 </div>
-                <p className="text-xs text-[#a5e7ff]">Tata Consultancy Services (TCS)</p>
-                <ul className="mt-2 space-y-1 text-xs text-gray-300 list-disc list-inside">
-                  <li>Architected automation solutions yielding <strong>65% reduction in manual effort</strong>.</li>
-                  <li>Automated deployment & scaling for <strong>100+ enterprise stores</strong>.</li>
+                <p className="font-sans text-xs text-[#38BDF8]">Tata Consultancy Services (TCS)</p>
+                <ul className="mt-2 space-y-1 font-sans text-xs text-[#CBD5E1] list-disc list-inside">
+                  <li>Architected automation solutions yielding <strong className="text-white font-mono">65% reduction in manual effort</strong>.</li>
+                  <li>Automated deployment & scaling for <strong className="text-white font-mono">100+ enterprise stores</strong>.</li>
                   <li>Maintained strict Governance, Risk, & Compliance (GRC) infrastructure standards.</li>
                 </ul>
               </div>
 
-              <div className="p-4 rounded-xl bg-surface-variant/30 border border-white/5">
+              <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
                 <div className="flex justify-between items-start">
-                  <h4 className="font-bold text-white">Software Developer</h4>
-                  <span className="text-xs text-gray-400">July 2022 — May 2026</span>
+                  <h4 className="font-display font-bold text-white">Software Developer</h4>
+                  <span className="font-mono text-xs text-[#94A3B8]">July 2022 — May 2026</span>
                 </div>
-                <p className="text-xs text-[#f6d1ff]">Tata Consultancy Services (TCS)</p>
-                <ul className="mt-2 space-y-1 text-xs text-gray-300 list-disc list-inside">
-                  <li>Engineered ML models achieving <strong>85% predictive accuracy</strong>.</li>
-                  <li>Refactored query services delivering <strong>30% speed improvement</strong>.</li>
-                  <li>Led zero-downtime database migration of <strong>5M+ records</strong>.</li>
+                <p className="font-sans text-xs text-[#A78BFA]">Tata Consultancy Services (TCS)</p>
+                <ul className="mt-2 space-y-1 font-sans text-xs text-[#CBD5E1] list-disc list-inside">
+                  <li>Engineered ML models achieving <strong className="text-white font-mono">85% predictive accuracy</strong>.</li>
+                  <li>Refactored query services delivering <strong className="text-white font-mono">30% speed improvement</strong>.</li>
+                  <li>Led zero-downtime database migration of <strong className="text-white font-mono">5M+ records</strong>.</li>
                 </ul>
               </div>
             </div>
@@ -139,64 +141,64 @@ EDUCATION & CERTIFICATIONS:
 
           {/* Key Skills */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-[#22D3EE] mb-3 flex items-center gap-2">
               <Award className="w-4 h-4" /> Core Technical Arsenal
             </h3>
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <strong className="text-white block mb-1">Data & Machine Learning</strong>
-                Python, Scikit-learn, TensorFlow, SQL
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-1">Data & Machine Learning</strong>
+                <span className="font-mono text-[11px] text-[#CBD5E1]">Python, Scikit-learn, TensorFlow, SQL</span>
               </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <strong className="text-white block mb-1">Cloud & DevOps</strong>
-                Azure (AZ-900), Jenkins, GitLab CI/CD
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-1">Cloud & DevOps</strong>
+                <span className="font-mono text-[11px] text-[#CBD5E1]">Azure (AZ-900), Jenkins, GitLab CI/CD</span>
               </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <strong className="text-white block mb-1">Automation</strong>
-                Selenium, SAP GUI, n8n, Make.com
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-1">Automation</strong>
+                <span className="font-mono text-[11px] text-[#CBD5E1]">Selenium, SAP GUI, n8n, Make.com</span>
               </div>
-              <div className="p-3 rounded-lg bg-white/5 border border-white/5">
-                <strong className="text-white block mb-1">AI Tools</strong>
-                GitHub Copilot, Claude Code, RAG, Prompt Engineering
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-1">AI Tools</strong>
+                <span className="font-mono text-[11px] text-[#CBD5E1]">GitHub Copilot, Claude Code, RAG, Prompt Engineering</span>
               </div>
             </div>
           </div>
 
           {/* Honors & Awards */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-3 flex items-center gap-2">
-              <Award className="w-4 h-4 text-[#00fdee]" /> Key Honors & Awards
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-[#22D3EE] mb-3 flex items-center gap-2">
+              <Award className="w-4 h-4 text-[#A78BFA]" /> Key Honors & Awards
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10 sm:col-span-2 bg-gradient-to-r from-white/10 to-[#00fdee]/10 border-[#00fdee]/30">
-                <strong className="text-[#00fdee] block mb-0.5">Quarterly Best Performer Award</strong>
-                <p className="text-[11px] text-[#bbc9cf]">Led developer team delivering complex Excel & SAP automation, transforming business requirements into scalable intelligent solutions.</p>
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-[#22D3EE]/30 sm:col-span-2 bg-gradient-to-r from-white/[0.04] to-[#22D3EE]/10">
+                <strong className="text-[#38BDF8] font-display block mb-0.5">Quarterly Best Performer Award</strong>
+                <p className="font-sans text-[11px] text-[#CBD5E1]">Led developer team delivering complex Excel & SAP automation, transforming business requirements into scalable intelligent solutions.</p>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <strong className="text-white block mb-0.5">Spotlight Award</strong>
-                <p className="text-[11px] text-[#bbc9cf]">Recognized for translating technical analyses into business insights for senior stakeholders.</p>
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-0.5">Spotlight Award</strong>
+                <p className="font-sans text-[11px] text-[#CBD5E1]">Recognized for translating technical analyses into business insights for senior stakeholders.</p>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <strong className="text-white block mb-0.5">"Above & Beyond" Initiative Award</strong>
-                <p className="text-[11px] text-[#bbc9cf]">Led root-cause analysis stabilizing critical production systems and preventing revenue incidents.</p>
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-0.5">"Above & Beyond" Initiative Award</strong>
+                <p className="font-sans text-[11px] text-[#CBD5E1]">Led root-cause analysis stabilizing critical production systems and preventing revenue incidents.</p>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <strong className="text-white block mb-0.5">Team Collaboration Star</strong>
-                <p className="text-[11px] text-[#bbc9cf]">Mentored junior developers and closed skill gaps within engineering teams.</p>
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-0.5">Team Collaboration Star</strong>
+                <p className="font-sans text-[11px] text-[#CBD5E1]">Mentored junior developers and closed skill gaps within engineering teams.</p>
               </div>
-              <div className="p-3 rounded-xl bg-white/5 border border-white/10">
-                <strong className="text-white block mb-0.5">GEM Award</strong>
-                <p className="text-[11px] text-[#bbc9cf]">Delivered high-performance analytics project ahead of schedule with top code quality.</p>
+              <div className="p-3 rounded-xl bg-white/[0.03] border border-white/[0.06]">
+                <strong className="text-white font-display block mb-0.5">GEM Award</strong>
+                <p className="font-sans text-[11px] text-[#CBD5E1]">Delivered high-performance analytics project ahead of schedule with top code quality.</p>
               </div>
             </div>
           </div>
 
           {/* Education & Certifications */}
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-wider text-primary mb-2 flex items-center gap-2">
-              <GraduationCap className="w-4 h-4 text-[#e9aaff]" /> Certifications & Upskilling
+            <h3 className="font-display text-xs font-bold uppercase tracking-wider text-[#22D3EE] mb-2 flex items-center gap-2">
+              <GraduationCap className="w-4 h-4 text-[#A78BFA]" /> Certifications & Upskilling
             </h3>
-            <div className="text-xs space-y-1.5 text-gray-300">
+            <div className="font-sans text-xs space-y-1.5 text-[#CBD5E1]">
               <p>• <strong>Certified AI-Powered Data Analytics Specialist</strong> — be10x (2026)</p>
               <p>• <strong>Certified AI Office & Productivity Specialist</strong> — be10x (2026)</p>
               <p>• <strong>AI Tools Workshop Certificate</strong> — be10x (2026)</p>
@@ -210,11 +212,11 @@ EDUCATION & CERTIFICATIONS:
         </div>
 
         {/* Footer */}
-        <div className="p-4 border-t border-white/10 bg-[#1b1b25] flex justify-between items-center text-xs">
-          <span className="text-gray-400">© 2024 Anush Rai. All rights reserved.</span>
+        <div className="p-4 border-t border-white/[0.08] bg-[#0D1321] flex justify-between items-center text-xs">
+          <span className="font-sans text-[#94A3B8]">© 2026 Anush Rai. All rights reserved.</span>
           <button
             onClick={onClose}
-            className="px-4 py-2 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold"
+            className="px-4 py-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.12] text-white font-semibold cursor-pointer transition-colors"
           >
             Close
           </button>
