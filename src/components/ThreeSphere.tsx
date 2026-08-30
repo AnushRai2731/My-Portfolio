@@ -146,14 +146,19 @@ export const ThreeSphere: React.FC = () => {
   const [hovered, setHovered] = useState(false);
   const [webglSupported, setWebglSupported] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     setWebglSupported(hasWebGL());
     setReducedMotion(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
   return (
-    <div className="lg:col-span-5 relative rounded-3xl w-full overflow-hidden border border-white/15 bg-gradient-to-b from-[#0e172a]/80 to-[#080a14]/90 backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between items-center min-h-[480px] group h-full">
+    <div className="relative rounded-3xl w-full overflow-hidden border border-white/15 bg-gradient-to-b from-[#0e172a]/80 to-[#080a14]/90 backdrop-blur-2xl p-6 shadow-2xl flex flex-col justify-between items-center h-[420px] lg:h-full lg:min-h-[480px] group">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[#00d2ff]/15 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-[#c084fc]/15 rounded-full blur-3xl pointer-events-none"></div>
 
@@ -170,7 +175,7 @@ export const ThreeSphere: React.FC = () => {
 
       {/* 3D Canvas Canvas Container */}
       <div 
-        className="relative w-full h-[340px] flex-1 flex items-center justify-center my-auto z-10 cursor-grab active:cursor-grabbing filter drop-shadow-[0_0_40px_rgba(0,253,238,0.35)]"
+        className="relative w-full h-[240px] sm:h-[280px] lg:flex-1 lg:h-auto flex items-center justify-center my-auto z-10 cursor-grab active:cursor-grabbing filter drop-shadow-[0_0_40px_rgba(0,253,238,0.35)]"
         onMouseEnter={() => setHovered(true)}
         onMouseLeave={() => setHovered(false)}
       >
@@ -184,6 +189,7 @@ export const ThreeSphere: React.FC = () => {
             <OrbitControls 
               enableZoom={false} 
               enablePan={false} 
+              enableRotate={true}
               enableDamping={true}
               dampingFactor={0.05}
               autoRotate={!reducedMotion} 
@@ -200,16 +206,16 @@ export const ThreeSphere: React.FC = () => {
       {/* Bottom Telemetry Bar */}
       <div className="w-full grid grid-cols-3 gap-2 relative z-10 pt-3 border-t border-white/10">
         <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center backdrop-blur-md">
-          <div className="text-[10px] uppercase font-bold text-[#94A3B8]">Nodes</div>
-          <div className="text-sm font-extrabold text-[#00d4ff]">250 Active</div>
+          <div className="text-[10px] uppercase font-bold text-[#94A3B8]">Network Nodes</div>
+          <div className="text-sm font-extrabold text-[#00d4ff]">250+ Active Links</div>
         </div>
         <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center backdrop-blur-md">
-          <div className="text-[10px] uppercase font-bold text-[#94A3B8]">Topology</div>
+          <div className="text-[10px] uppercase font-bold text-[#94A3B8]">Neural Topology</div>
           <div className="text-sm font-extrabold text-[#ec4899]">Fibonacci Web</div>
         </div>
         <div className="bg-white/5 border border-white/10 rounded-xl p-2.5 text-center backdrop-blur-md">
-          <div className="text-[10px] uppercase font-bold text-[#94A3B8]">Core Glow</div>
-          <div className="text-sm font-extrabold text-[#f43f5e]">Magenta Pulse</div>
+          <div className="text-[10px] uppercase font-bold text-[#94A3B8]">Core Signal</div>
+          <div className="text-sm font-extrabold text-[#f43f5e]">Creative Intelligence</div>
         </div>
       </div>
     </div>

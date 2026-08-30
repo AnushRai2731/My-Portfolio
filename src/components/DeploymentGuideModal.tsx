@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Code2, X, Github, Server, Database, Terminal, Copy, Check, ExternalLink } from 'lucide-react';
+import { Code2, X, Server, Database, Terminal, Copy, Check, ExternalLink } from 'lucide-react';
+import { Github } from './SocialIcons';
 
 interface DeploymentGuideModalProps {
   isOpen: boolean;

@@ -1,5 +1,6 @@
 import React from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Mail } from 'lucide-react';
+import { Github, Linkedin } from './SocialIcons';
 import { PERSONAL_INFO } from '../data/portfolioData';
 
 interface FooterProps {
